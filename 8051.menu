@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<optionMenuItem>
+  <tag>8051</tag>
+  <display>Generic 8051</display>
+  <data>$CUR_DIR$\8051.i51</data>
+</optionMenuItem>

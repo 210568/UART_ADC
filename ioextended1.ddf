@@ -1,0 +1,582 @@
+;;                      - ioextended1.ddf -
+;;
+;; Special header for the _generic extended1 Microcontroller.
+;;
+
+;;
+;; Description of the format in section [Memory]
+;; ---------------------------------------------
+;; Define existing memory: 
+;;   Memory = <name> <zone>  <start address> <end address> <access>
+;;   name          : Your name of the address space.
+;;   zone          : Name of the zone (Code, XData, IData, SFR) that the memory is placed in
+;;   start address : Start of your memory block
+;;   end address   : End of memory your block
+;;   access        : Type of access, read-only (R) or read-write (RW)
+;;
+;; Protect a SFR register:
+;;   Protect = SFR <address> <noOfBytes>
+;;
+
+;; Example:
+;;
+;;[Memory]
+;;Memory = MyCodeSpace  Code  0x2000 0x3FFF R
+;;Memory = MyDataSpace  XData 0x0300 0x03FF RW
+
+;;Protect = SFR 0x80 1
+;;Protect = SFR 0x90 1
+
+
+;;
+;; Description of the format in sections [BankN]
+;; ---------------------------------------------
+;; Format:   sectorN = start_address size memory_type
+;; Used to define banked address zones within the 8051 address space (Bank).
+;;
+;;   start_address  start of bank block
+;;   size           size of bank block
+;;   memory_type    type of memory (program or data)
+;;
+;;[Bank]
+
+
+
+;; SFR page info
+;;
+;; Description of the format in section [SfrPageInfo]
+;; --------------------------------------------------
+;;
+;; If the device have several page registers use:
+;;  SfrPageGroupsN = SFR_address SFR_page_address page_group
+;;
+;; If the device only have one page register use:
+;;  SfrPageRegister = SFR_page_address
+;;
+;;[SfrPageInfo]
+
+
+
+;; IO Register definitions
+[Sfr]
+
+;; I/O Port group
+;; ------------------------------------------------------------
+sfr = "P4",                      "SFR", 80, 1, base=16, tooltip="Port 4"
+sfr = "P4.P4_0",                 "SFR", 80, 1, base=16, bitRange=0
+sfr = "P4.P4_1",                 "SFR", 80, 1, base=16, bitRange=1
+sfr = "P4.P4_2",                 "SFR", 80, 1, base=16, bitRange=2
+sfr = "P4.P4_3",                 "SFR", 80, 1, base=16, bitRange=3
+sfr = "P4.P4_4",                 "SFR", 80, 1, base=16, bitRange=4
+sfr = "P4.P4_5",                 "SFR", 80, 1, base=16, bitRange=5
+sfr = "P4.P4_6",                 "SFR", 80, 1, base=16, bitRange=6
+sfr = "P4.P4_7",                 "SFR", 80, 1, base=16, bitRange=7
+sfr = "P1",                      "SFR", 90, 1, base=16, tooltip="Port 1"
+sfr = "P1.T2",                   "SFR", 90, 1, base=16, bitRange=0
+sfr = "P1.T2EX",                 "SFR", 90, 1, base=16, bitRange=1
+sfr = "P1.RXD1",                 "SFR", 90, 1, base=16, bitRange=2
+sfr = "P1.TXD1",                 "SFR", 90, 1, base=16, bitRange=3
+sfr = "P1.INT2",                 "SFR", 90, 1, base=16, bitRange=4
+sfr = "P1.INT3",                 "SFR", 90, 1, base=16, bitRange=5
+sfr = "P1.INT4",                 "SFR", 90, 1, base=16, bitRange=6
+sfr = "P1.INT5",                 "SFR", 90, 1, base=16, bitRange=7
+sfr = "P4CNT",                   "SFR", 92, 1, base=16, tooltip="Port 4 Control Register"
+sfr = "P4CNT.P4CNT_0",           "SFR", 92, 1, base=16, bitRange=0
+sfr = "P4CNT.P4CNT_1",           "SFR", 92, 1, base=16, bitRange=1
+sfr = "P4CNT.P4CNT_2",           "SFR", 92, 1, base=16, bitRange=2
+sfr = "P4CNT.P4CNT_3",           "SFR", 92, 1, base=16, bitRange=3
+sfr = "P4CNT.P4CNT_4",           "SFR", 92, 1, base=16, bitRange=4
+sfr = "P4CNT.P4CNT_5",           "SFR", 92, 1, base=16, bitRange=5
+sfr = "P2",                      "SFR", A0, 1, base=16, tooltip="Port 2"
+sfr = "P2.P2_0",                 "SFR", A0, 1, base=16, bitRange=0
+sfr = "P2.P2_1",                 "SFR", A0, 1, base=16, bitRange=1
+sfr = "P2.P2_2",                 "SFR", A0, 1, base=16, bitRange=2
+sfr = "P2.P2_3",                 "SFR", A0, 1, base=16, bitRange=3
+sfr = "P2.P2_4",                 "SFR", A0, 1, base=16, bitRange=4
+sfr = "P2.P2_5",                 "SFR", A0, 1, base=16, bitRange=5
+sfr = "P2.P2_6",                 "SFR", A0, 1, base=16, bitRange=6
+sfr = "P2.P2_7",                 "SFR", A0, 1, base=16, bitRange=7
+sfr = "P5",                      "SFR", A1, 1, base=16, tooltip="Port 5"
+sfr = "P5.P5_0",                 "SFR", A1, 1, base=16, bitRange=0
+sfr = "P5.P5_1",                 "SFR", A1, 1, base=16, bitRange=1
+sfr = "P5.P5_2",                 "SFR", A1, 1, base=16, bitRange=2
+sfr = "P5.P5_3",                 "SFR", A1, 1, base=16, bitRange=3
+sfr = "P5.P5_4",                 "SFR", A1, 1, base=16, bitRange=4
+sfr = "P5.P5_5",                 "SFR", A1, 1, base=16, bitRange=5
+sfr = "P5.P5_6",                 "SFR", A1, 1, base=16, bitRange=6
+sfr = "P5.P5_7",                 "SFR", A1, 1, base=16, bitRange=7
+sfr = "P5CNT",                   "SFR", A2, 1, base=16, tooltip="Port 5 Control Register"
+sfr = "P5CNT.P5CNT_0",           "SFR", A2, 1, base=16, bitRange=0
+sfr = "P5CNT.P5CNT_1",           "SFR", A2, 1, base=16, bitRange=1
+sfr = "P5CNT.P5CNT_2",           "SFR", A2, 1, base=16, bitRange=2
+sfr = "P5CNT.C0_I_O",            "SFR", A2, 1, base=16, bitRange=3
+sfr = "P5CNT.CAN0BA",            "SFR", A2, 1, base=16, bitRange=6
+sfr = "P3",                      "SFR", B0, 1, base=16, tooltip="Port 3"
+sfr = "P3.RXD0",                 "SFR", B0, 1, base=16, bitRange=0
+sfr = "P3.TXD0",                 "SFR", B0, 1, base=16, bitRange=1
+sfr = "P3.INT0",                 "SFR", B0, 1, base=16, bitRange=2
+sfr = "P3.INT1",                 "SFR", B0, 1, base=16, bitRange=3
+sfr = "P3.T0",                   "SFR", B0, 1, base=16, bitRange=4
+sfr = "P3.T1",                   "SFR", B0, 1, base=16, bitRange=5
+sfr = "P3.WR",                   "SFR", B0, 1, base=16, bitRange=6
+sfr = "P3.TD",                   "SFR", B0, 1, base=16, bitRange=7
+sfr = "P6",                      "SFR", B1, 1, base=16, tooltip="Port 6"
+sfr = "P6.CE4",                  "SFR", B1, 1, base=16, bitRange=0
+sfr = "P6.CE5",                  "SFR", B1, 1, base=16, bitRange=1
+sfr = "P6.CE6",                  "SFR", B1, 1, base=16, bitRange=2
+sfr = "P6.CE7",                  "SFR", B1, 1, base=16, bitRange=3
+sfr = "P6.A20",                  "SFR", B1, 1, base=16, bitRange=4
+sfr = "P6.A21",                  "SFR", B1, 1, base=16, bitRange=5
+sfr = "P6.RXD2",                 "SFR", B1, 1, base=16, bitRange=6
+sfr = "P6.TXD2",                 "SFR", B1, 1, base=16, bitRange=7
+sfr = "P6CNT",                   "SFR", B2, 1, base=16, tooltip="Port 6 Configuration Control"
+sfr = "P6CNT.P6CNT_0",           "SFR", B2, 1, base=16, bitRange=0
+sfr = "P6CNT.P6CNT_1",           "SFR", B2, 1, base=16, bitRange=1
+sfr = "P6CNT.P6CNT_2",           "SFR", B2, 1, base=16, bitRange=2
+sfr = "P6CNT.P6CNT_3",           "SFR", B2, 1, base=16, bitRange=3
+sfr = "P6CNT.P6CNT_4",           "SFR", B2, 1, base=16, bitRange=4
+sfr = "P6CNT.P6CNT_5",           "SFR", B2, 1, base=16, bitRange=5
+sfr = "P7",                      "SFR", F9, 1, base=16, tooltip="Port 7"
+sfr = "P7.P7_0",                 "SFR", F9, 1, base=16, bitRange=0
+sfr = "P7.P7_1",                 "SFR", F9, 1, base=16, bitRange=1
+sfr = "P7.P7_2",                 "SFR", F9, 1, base=16, bitRange=2
+sfr = "P7.P7_3",                 "SFR", F9, 1, base=16, bitRange=3
+sfr = "P7.P7_4",                 "SFR", F9, 1, base=16, bitRange=4
+sfr = "P7.P7_5",                 "SFR", F9, 1, base=16, bitRange=5
+sfr = "P7.P7_6",                 "SFR", F9, 1, base=16, bitRange=6
+sfr = "P7.P7_7",                 "SFR", F9, 1, base=16, bitRange=7
+
+;; Extended Core group
+;; ------------------------------------------------------------
+sfr = "DPL",                     "SFR", 82, 1, base=16, tooltip="Data Pointer Low 0"
+sfr = "DPH",                     "SFR", 83, 1, base=16, tooltip="Data Pointer High 0"
+sfr = "DPX",                     "SFR", 93, 1, base=16, tooltip="Data Pointer Extended Register 0"
+sfr = "ESP",                     "SFR", 9B, 1, base=16, tooltip="Extended Stack Pointer Register"
+sfr = "ESP.ESP0",                "SFR", 9B, 1, base=16, bitRange=0
+sfr = "ESP.ESP1",                "SFR", 9B, 1, base=16, bitRange=1
+
+;; System management group
+;; ------------------------------------------------------------
+sfr = "DPS",                     "SFR", 86, 1, base=16, tooltip="Data Pointer Select"
+sfr = "DPS.SEL0",                "SFR", 86, 1, base=16, bitRange=0
+sfr = "DPS.SEL1",                "SFR", 86, 1, base=16, bitRange=3
+sfr = "DPS.AID",                 "SFR", 86, 1, base=16, bitRange=4
+sfr = "DPS.TSL",                 "SFR", 86, 1, base=16, bitRange=5
+sfr = "DPS.ID0",                 "SFR", 86, 1, base=16, bitRange=6
+sfr = "DPS.ID1",                 "SFR", 86, 1, base=16, bitRange=7
+sfr = "PCON",                    "SFR", 87, 1, base=16, tooltip="Power Control"
+sfr = "PCON.IDLE",               "SFR", 87, 1, base=16, bitRange=0
+sfr = "PCON.STOP",               "SFR", 87, 1, base=16, bitRange=1
+sfr = "PCON.GF0",                "SFR", 87, 1, base=16, bitRange=2
+sfr = "PCON.GF1",                "SFR", 87, 1, base=16, bitRange=3
+sfr = "PCON.OFDE",               "SFR", 87, 1, base=16, bitRange=4
+sfr = "PCON.OFDF",               "SFR", 87, 1, base=16, bitRange=5
+sfr = "PCON.SMOD0",              "SFR", 87, 1, base=16, bitRange=6
+sfr = "PCON.SMOD_0",             "SFR", 87, 1, base=16, bitRange=7
+sfr = "AP",                      "SFR", 9C, 1, base=16, tooltip="Address Page Register"
+sfr = "ACON",                    "SFR", 9D, 1, base=16, tooltip="Address Control Register"
+sfr = "ACON.AM0",                "SFR", 9D, 1, base=16, bitRange=0
+sfr = "ACON.AM1",                "SFR", 9D, 1, base=16, bitRange=1
+sfr = "ACON.SA",                 "SFR", 9D, 1, base=16, bitRange=2
+sfr = "ACON.BROM",               "SFR", 9D, 1, base=16, bitRange=3
+sfr = "ACON.BPME",               "SFR", 9D, 1, base=16, bitRange=4
+sfr = "ACON.MROM",               "SFR", 9D, 1, base=16, bitRange=5
+sfr = "PMR",                     "SFR", C4, 1, base=16, tooltip="Power Management Register"
+sfr = "PMR.ALEOFF",              "SFR", C4, 1, base=16, bitRange=2
+sfr = "PMR.P4X_X2",              "SFR", C4, 1, base=16, bitRange=3
+sfr = "PMR.CTM",                 "SFR", C4, 1, base=16, bitRange=4
+sfr = "PMR.SWB",                 "SFR", C4, 1, base=16, bitRange=5
+sfr = "PMR.CD0",                 "SFR", C4, 1, base=16, bitRange=6
+sfr = "PMR.CD1",                 "SFR", C4, 1, base=16, bitRange=7
+sfr = "MCON",                    "SFR", C6, 1, base=16, tooltip="Memory Control Register"
+sfr = "MCON.PDCE0",              "SFR", C6, 1, base=16, bitRange=0
+sfr = "MCON.PDCE1",              "SFR", C6, 1, base=16, bitRange=1
+sfr = "MCON.PDCE2",              "SFR", C6, 1, base=16, bitRange=2
+sfr = "MCON.PDCE3",              "SFR", C6, 1, base=16, bitRange=3
+sfr = "MCON.CMA",                "SFR", C6, 1, base=16, bitRange=5
+sfr = "MCON.IDM0",               "SFR", C6, 1, base=16, bitRange=6
+sfr = "MCON.IDM1",               "SFR", C6, 1, base=16, bitRange=7
+sfr = "MXAX",                    "SFR", EA, 1, base=16, tooltip="MOVX Extended Address Register"
+sfr = "DPS1",                    "SFR", F6, 1, base=16, tooltip="Data Pointer Select 1"
+sfr = "DPS1.ID2",                "SFR", F6, 1, base=16, bitRange=6
+sfr = "DPS1.ID3",                "SFR", F6, 1, base=16, bitRange=7
+
+;; Timer group
+;; ------------------------------------------------------------
+sfr = "TCON",                    "SFR", 88, 1, base=16, tooltip="Timer/Counter Control"
+sfr = "TCON.IT0",                "SFR", 88, 1, base=16, bitRange=0
+sfr = "TCON.IE0",                "SFR", 88, 1, base=16, bitRange=1
+sfr = "TCON.IT1",                "SFR", 88, 1, base=16, bitRange=2
+sfr = "TCON.IE1",                "SFR", 88, 1, base=16, bitRange=3
+sfr = "TCON.TR0",                "SFR", 88, 1, base=16, bitRange=4
+sfr = "TCON.TF0",                "SFR", 88, 1, base=16, bitRange=5
+sfr = "TCON.TR1",                "SFR", 88, 1, base=16, bitRange=6
+sfr = "TCON.TF1",                "SFR", 88, 1, base=16, bitRange=7
+sfr = "TMOD",                    "SFR", 89, 1, base=16, tooltip="Timer Mode Control"
+sfr = "TMOD.M00",                "SFR", 89, 1, base=16, bitRange=0
+sfr = "TMOD.M10",                "SFR", 89, 1, base=16, bitRange=1
+sfr = "TMOD.C_T0",               "SFR", 89, 1, base=16, bitRange=2
+sfr = "TMOD.GATE0",              "SFR", 89, 1, base=16, bitRange=3
+sfr = "TMOD.M01",                "SFR", 89, 1, base=16, bitRange=4
+sfr = "TMOD.M11",                "SFR", 89, 1, base=16, bitRange=5
+sfr = "TMOD.C_T1",               "SFR", 89, 1, base=16, bitRange=6
+sfr = "TMOD.GATE1",              "SFR", 89, 1, base=16, bitRange=7
+sfr = "TL0",                     "SFR", 8A, 1, base=16, tooltip="Timer 0 LSB"
+sfr = "TL0.TL0_0",               "SFR", 8A, 1, base=16, bitRange=0
+sfr = "TL0.TL0_1",               "SFR", 8A, 1, base=16, bitRange=1
+sfr = "TL0.TL0_2",               "SFR", 8A, 1, base=16, bitRange=2
+sfr = "TL0.TL0_3",               "SFR", 8A, 1, base=16, bitRange=3
+sfr = "TL0.TL0_4",               "SFR", 8A, 1, base=16, bitRange=4
+sfr = "TL0.TL0_5",               "SFR", 8A, 1, base=16, bitRange=5
+sfr = "TL0.TL0_6",               "SFR", 8A, 1, base=16, bitRange=6
+sfr = "TL0.TL0_7",               "SFR", 8A, 1, base=16, bitRange=7
+sfr = "TL1",                     "SFR", 8B, 1, base=16, tooltip="Timer 1 LSB"
+sfr = "TL1.TL1_0",               "SFR", 8B, 1, base=16, bitRange=0
+sfr = "TL1.TL1_1",               "SFR", 8B, 1, base=16, bitRange=1
+sfr = "TL1.TL1_2",               "SFR", 8B, 1, base=16, bitRange=2
+sfr = "TL1.TL1_3",               "SFR", 8B, 1, base=16, bitRange=3
+sfr = "TL1.TL1_4",               "SFR", 8B, 1, base=16, bitRange=4
+sfr = "TL1.TL1_5",               "SFR", 8B, 1, base=16, bitRange=5
+sfr = "TL1.TL1_6",               "SFR", 8B, 1, base=16, bitRange=6
+sfr = "TL1.TL1_7",               "SFR", 8B, 1, base=16, bitRange=7
+sfr = "TH0",                     "SFR", 8C, 1, base=16, tooltip="Timer 0 MSB"
+sfr = "TH0.TH0_0",               "SFR", 8C, 1, base=16, bitRange=0
+sfr = "TH0.TH0_1",               "SFR", 8C, 1, base=16, bitRange=1
+sfr = "TH0.TH0_2",               "SFR", 8C, 1, base=16, bitRange=2
+sfr = "TH0.TH0_3",               "SFR", 8C, 1, base=16, bitRange=3
+sfr = "TH0.TH0_4",               "SFR", 8C, 1, base=16, bitRange=4
+sfr = "TH0.TH0_5",               "SFR", 8C, 1, base=16, bitRange=5
+sfr = "TH0.TH0_6",               "SFR", 8C, 1, base=16, bitRange=6
+sfr = "TH0.TH0_7",               "SFR", 8C, 1, base=16, bitRange=7
+sfr = "TH1",                     "SFR", 8D, 1, base=16, tooltip="Timer 1 MSB"
+sfr = "TH1.TH1_0",               "SFR", 8D, 1, base=16, bitRange=0
+sfr = "TH1.TH1_1",               "SFR", 8D, 1, base=16, bitRange=1
+sfr = "TH1.TH1_2",               "SFR", 8D, 1, base=16, bitRange=2
+sfr = "TH1.TH1_3",               "SFR", 8D, 1, base=16, bitRange=3
+sfr = "TH1.TH1_4",               "SFR", 8D, 1, base=16, bitRange=4
+sfr = "TH1.TH1_5",               "SFR", 8D, 1, base=16, bitRange=5
+sfr = "TH1.TH1_6",               "SFR", 8D, 1, base=16, bitRange=6
+sfr = "TH1.TH1_7",               "SFR", 8D, 1, base=16, bitRange=7
+sfr = "CKCON",                   "SFR", 8E, 1, base=16, tooltip="Clock Control"
+sfr = "CKCON.MD0",               "SFR", 8E, 1, base=16, bitRange=0
+sfr = "CKCON.MD1",               "SFR", 8E, 1, base=16, bitRange=1
+sfr = "CKCON.MD2",               "SFR", 8E, 1, base=16, bitRange=2
+sfr = "CKCON.T0M",               "SFR", 8E, 1, base=16, bitRange=3
+sfr = "CKCON.T1M",               "SFR", 8E, 1, base=16, bitRange=4
+sfr = "CKCON.T2M",               "SFR", 8E, 1, base=16, bitRange=5
+sfr = "CKCON.WD0",               "SFR", 8E, 1, base=16, bitRange=6
+sfr = "CKCON.WD1",               "SFR", 8E, 1, base=16, bitRange=7
+sfr = "T2CON",                   "SFR", C8, 1, base=16, tooltip="Timer 2 Control"
+sfr = "T2CON.CP_RL2",            "SFR", C8, 1, base=16, bitRange=0
+sfr = "T2CON.C_T2",              "SFR", C8, 1, base=16, bitRange=1
+sfr = "T2CON.TR2",               "SFR", C8, 1, base=16, bitRange=2
+sfr = "T2CON.EXEN2",             "SFR", C8, 1, base=16, bitRange=3
+sfr = "T2CON.TCLK",              "SFR", C8, 1, base=16, bitRange=4
+sfr = "T2CON.RCLK",              "SFR", C8, 1, base=16, bitRange=5
+sfr = "T2CON.EXF2",              "SFR", C8, 1, base=16, bitRange=6
+sfr = "T2CON.TF2",               "SFR", C8, 1, base=16, bitRange=7
+sfr = "T2MOD",                   "SFR", C9, 1, base=16, tooltip="Timer 2 Mode"
+sfr = "T2MOD.DCEN",              "SFR", C9, 1, base=16, bitRange=0
+sfr = "T2MOD.T2OE",              "SFR", C9, 1, base=16, bitRange=1
+sfr = "T2MOD.D13T2",             "SFR", C9, 1, base=16, bitRange=3
+sfr = "T2MOD.D13T1",             "SFR", C9, 1, base=16, bitRange=4
+sfr = "RCAP2L",                  "SFR", CA, 1, base=16, tooltip="Timer 2 Capture LSB"
+sfr = "RCAP2L.RCAP2L_0",         "SFR", CA, 1, base=16, bitRange=0
+sfr = "RCAP2L.RCAP2L_1",         "SFR", CA, 1, base=16, bitRange=1
+sfr = "RCAP2L.RCAP2L_2",         "SFR", CA, 1, base=16, bitRange=2
+sfr = "RCAP2L.RCAP2L_3",         "SFR", CA, 1, base=16, bitRange=3
+sfr = "RCAP2L.RCAP2L_4",         "SFR", CA, 1, base=16, bitRange=4
+sfr = "RCAP2L.RCAP2L_5",         "SFR", CA, 1, base=16, bitRange=5
+sfr = "RCAP2L.RCAP2L_6",         "SFR", CA, 1, base=16, bitRange=6
+sfr = "RCAP2L.RCAP2L_7",         "SFR", CA, 1, base=16, bitRange=7
+sfr = "RCAP2H",                  "SFR", CB, 1, base=16, tooltip="Timer 2 Capture MSB"
+sfr = "RCAP2H.RCAP2H_0",         "SFR", CB, 1, base=16, bitRange=0
+sfr = "RCAP2H.RCAP2H_1",         "SFR", CB, 1, base=16, bitRange=1
+sfr = "RCAP2H.RCAP2H_2",         "SFR", CB, 1, base=16, bitRange=2
+sfr = "RCAP2H.RCAP2H_3",         "SFR", CB, 1, base=16, bitRange=3
+sfr = "RCAP2H.RCAP2H_4",         "SFR", CB, 1, base=16, bitRange=4
+sfr = "RCAP2H.RCAP2H_5",         "SFR", CB, 1, base=16, bitRange=5
+sfr = "RCAP2H.RCAP2H_6",         "SFR", CB, 1, base=16, bitRange=6
+sfr = "RCAP2H.RCAP2H_7",         "SFR", CB, 1, base=16, bitRange=7
+sfr = "TL2",                     "SFR", CC, 1, base=16, tooltip="Timer 2 LSB"
+sfr = "TL2.TL2_0",               "SFR", CC, 1, base=16, bitRange=0
+sfr = "TL2.TL2_1",               "SFR", CC, 1, base=16, bitRange=1
+sfr = "TL2.TL2_2",               "SFR", CC, 1, base=16, bitRange=2
+sfr = "TL2.TL2_3",               "SFR", CC, 1, base=16, bitRange=3
+sfr = "TL2.TL2_4",               "SFR", CC, 1, base=16, bitRange=4
+sfr = "TL2.TL2_5",               "SFR", CC, 1, base=16, bitRange=5
+sfr = "TL2.TL2_6",               "SFR", CC, 1, base=16, bitRange=6
+sfr = "TL2.TL2_7",               "SFR", CC, 1, base=16, bitRange=7
+sfr = "TH2",                     "SFR", CD, 1, base=16, tooltip="Timer 2 MSB"
+sfr = "TH2.TH2_0",               "SFR", CD, 1, base=16, bitRange=0
+sfr = "TH2.TH2_1",               "SFR", CD, 1, base=16, bitRange=1
+sfr = "TH2.TH2_2",               "SFR", CD, 1, base=16, bitRange=2
+sfr = "TH2.TH2_3",               "SFR", CD, 1, base=16, bitRange=3
+sfr = "TH2.TH2_4",               "SFR", CD, 1, base=16, bitRange=4
+sfr = "TH2.TH2_5",               "SFR", CD, 1, base=16, bitRange=5
+sfr = "TH2.TH2_6",               "SFR", CD, 1, base=16, bitRange=6
+sfr = "TH2.TH2_7",               "SFR", CD, 1, base=16, bitRange=7
+sfr = "COR",                     "SFR", CE, 1, base=16, tooltip="Clock Output Register"
+sfr = "COR.CLKOE",               "SFR", CE, 1, base=16, bitRange=0
+sfr = "COR.COD0",                "SFR", CE, 1, base=16, bitRange=1
+sfr = "COR.COD1",                "SFR", CE, 1, base=16, bitRange=2
+sfr = "COR.C0BPR6",              "SFR", CE, 1, base=16, bitRange=3
+sfr = "COR.C0BPR7",              "SFR", CE, 1, base=16, bitRange=4
+sfr = "COR.IRDACK",              "SFR", CE, 1, base=16, bitRange=7
+sfr = "WDCON",                   "SFR", D8, 1, base=16, tooltip="Watchdog Control"
+sfr = "WDCON.RWT",               "SFR", D8, 1, base=16, bitRange=0
+sfr = "WDCON.EWT",               "SFR", D8, 1, base=16, bitRange=1
+sfr = "WDCON.WTRF",              "SFR", D8, 1, base=16, bitRange=2
+sfr = "WDCON.WDIF",              "SFR", D8, 1, base=16, bitRange=3
+sfr = "WDCON.PFI",               "SFR", D8, 1, base=16, bitRange=4
+sfr = "WDCON.EPF1",              "SFR", D8, 1, base=16, bitRange=5
+sfr = "WDCON.POR",               "SFR", D8, 1, base=16, bitRange=6
+sfr = "WDCON.SMOD_1",            "SFR", D8, 1, base=16, bitRange=7
+sfr = "TL3",                     "SFR", FB, 1, base=16, tooltip="Count Registers 3, LSB"
+sfr = "TH3",                     "SFR", FC, 1, base=16, tooltip="Count Registers 3, MSB"
+sfr = "T3CM",                    "SFR", FD, 1, base=16, tooltip="Timer Control/Mode Registers 3"
+sfr = "T3CM.M0",                 "SFR", FD, 1, base=16, bitRange=0
+sfr = "T3CM.M1",                 "SFR", FD, 1, base=16, bitRange=1
+sfr = "T3CM.C_TR",               "SFR", FD, 1, base=16, bitRange=2
+sfr = "T3CM.GATE",               "SFR", FD, 1, base=16, bitRange=3
+sfr = "T3CM.SMOD_2",             "SFR", FD, 1, base=16, bitRange=4
+sfr = "T3CM.T3M",                "SFR", FD, 1, base=16, bitRange=5
+sfr = "T3CM.TR3",                "SFR", FD, 1, base=16, bitRange=6
+sfr = "T3CM.TF3",                "SFR", FD, 1, base=16, bitRange=7
+
+;; Interrupt group
+;; ------------------------------------------------------------
+sfr = "EXIF",                    "SFR", 91, 1, base=16, tooltip="External Interrupt Flag"
+sfr = "EXIF.BGS",                "SFR", 91, 1, base=16, bitRange=0
+sfr = "EXIF.RGSL",               "SFR", 91, 1, base=16, bitRange=1
+sfr = "EXIF.RGMD",               "SFR", 91, 1, base=16, bitRange=2
+sfr = "EXIF.CKRY",               "SFR", 91, 1, base=16, bitRange=3
+sfr = "EXIF.IE2",                "SFR", 91, 1, base=16, bitRange=4
+sfr = "EXIF.IE3",                "SFR", 91, 1, base=16, bitRange=5
+sfr = "EXIF.IE4",                "SFR", 91, 1, base=16, bitRange=6
+sfr = "EXIF.IE5",                "SFR", 91, 1, base=16, bitRange=7
+sfr = "IE",                      "SFR", A8, 1, base=16, tooltip="Interrupt Enable"
+sfr = "IE.EX0",                  "SFR", A8, 1, base=16, bitRange=0
+sfr = "IE.ET0",                  "SFR", A8, 1, base=16, bitRange=1
+sfr = "IE.EX1",                  "SFR", A8, 1, base=16, bitRange=2
+sfr = "IE.ET1",                  "SFR", A8, 1, base=16, bitRange=3
+sfr = "IE.ES",                   "SFR", A8, 1, base=16, bitRange=4
+sfr = "IE.ET2",                  "SFR", A8, 1, base=16, bitRange=5
+sfr = "IE.ES1",                  "SFR", A8, 1, base=16, bitRange=6
+sfr = "IE.EA",                   "SFR", A8, 1, base=16, bitRange=7
+sfr = "IP",                      "SFR", B8, 1, base=16, tooltip="Interrupt Priority"
+sfr = "IP.PX0",                  "SFR", B8, 1, base=16, bitRange=0
+sfr = "IP.PT0",                  "SFR", B8, 1, base=16, bitRange=1
+sfr = "IP.PX1",                  "SFR", B8, 1, base=16, bitRange=2
+sfr = "IP.PT1",                  "SFR", B8, 1, base=16, bitRange=3
+sfr = "IP.PS0",                  "SFR", B8, 1, base=16, bitRange=4
+sfr = "IP.PT2",                  "SFR", B8, 1, base=16, bitRange=5
+sfr = "IP.PS1",                  "SFR", B8, 1, base=16, bitRange=6
+sfr = "EIE",                     "SFR", E8, 1, base=16, tooltip="Extended Interrupt Enable"
+sfr = "EIE.EX2",                 "SFR", E8, 1, base=16, bitRange=0
+sfr = "EIE.EX3",                 "SFR", E8, 1, base=16, bitRange=1
+sfr = "EIE.EX4",                 "SFR", E8, 1, base=16, bitRange=2
+sfr = "EIE.EX5",                 "SFR", E8, 1, base=16, bitRange=3
+sfr = "EIE.EWDI",                "SFR", E8, 1, base=16, bitRange=4
+sfr = "EIE.C1IE",                "SFR", E8, 1, base=16, bitRange=5
+sfr = "EIE.C0IE",                "SFR", E8, 1, base=16, bitRange=6
+sfr = "EIE.CANBIE",              "SFR", E8, 1, base=16, bitRange=7
+sfr = "EIP",                     "SFR", F8, 1, base=16, tooltip="Extended Interrupt Priority"
+sfr = "EIP.PX2_5",               "SFR", F8, 1, base=16, bitRange=0
+sfr = "EIP.PT2",                 "SFR", F8, 1, base=16, bitRange=1
+sfr = "EIP.PS2",                 "SFR", F8, 1, base=16, bitRange=2
+sfr = "EIP.PWPI",                "SFR", F8, 1, base=16, bitRange=3
+sfr = "EIP.PWDI",                "SFR", F8, 1, base=16, bitRange=4
+sfr = "EIP.EAIP",                "SFR", F8, 1, base=16, bitRange=5
+sfr = "EIP.C0IP",                "SFR", F8, 1, base=16, bitRange=6
+sfr = "EIP.EPMIP",               "SFR", F8, 1, base=16, bitRange=7
+
+;; Serial group
+;; ------------------------------------------------------------
+sfr = "SCON0",                   "SFR", 98, 1, base=16, tooltip="Serial Port 0 Control"
+sfr = "SCON0.RI_0",              "SFR", 98, 1, base=16, bitRange=0
+sfr = "SCON0.TI_0",              "SFR", 98, 1, base=16, bitRange=1
+sfr = "SCON0.RB8_0",             "SFR", 98, 1, base=16, bitRange=2
+sfr = "SCON0.TB8_0",             "SFR", 98, 1, base=16, bitRange=3
+sfr = "SCON0.REN_0",             "SFR", 98, 1, base=16, bitRange=4
+sfr = "SCON0.SM2_0",             "SFR", 98, 1, base=16, bitRange=5
+sfr = "SCON0.SM1_0",             "SFR", 98, 1, base=16, bitRange=6
+sfr = "SCON0.FE_0",              "SFR", 98, 1, base=16, bitRange=7
+sfr = "SCON",                    "SFR", 98, 1, base=16, tooltip="Serial Port 0 Control"
+sfr = "SCON.RI",                 "SFR", 98, 1, base=16, bitRange=0
+sfr = "SCON.TI",                 "SFR", 98, 1, base=16, bitRange=1
+sfr = "SCON.RB8",                "SFR", 98, 1, base=16, bitRange=2
+sfr = "SCON.TB8",                "SFR", 98, 1, base=16, bitRange=3
+sfr = "SCON.REN",                "SFR", 98, 1, base=16, bitRange=4
+sfr = "SCON.SM2",                "SFR", 98, 1, base=16, bitRange=5
+sfr = "SCON.SM1",                "SFR", 98, 1, base=16, bitRange=6
+sfr = "SCON.SM0",                "SFR", 98, 1, base=16, bitRange=7
+sfr = "SBUF0",                   "SFR", 99, 1, base=16, tooltip="Serial Data Buffer 0"
+sfr = "SBUF0.SBUF0_0",           "SFR", 99, 1, base=16, bitRange=0
+sfr = "SBUF0.SBUF0_1",           "SFR", 99, 1, base=16, bitRange=1
+sfr = "SBUF0.SBUF0_2",           "SFR", 99, 1, base=16, bitRange=2
+sfr = "SBUF0.SBUF0_3",           "SFR", 99, 1, base=16, bitRange=3
+sfr = "SBUF0.SBUF0_4",           "SFR", 99, 1, base=16, bitRange=4
+sfr = "SBUF0.SBUF0_5",           "SFR", 99, 1, base=16, bitRange=5
+sfr = "SBUF0.SBUF0_6",           "SFR", 99, 1, base=16, bitRange=6
+sfr = "SBUF0.SBUF0_7",           "SFR", 99, 1, base=16, bitRange=7
+sfr = "SCON1",                   "SFR", C0, 1, base=16, tooltip="Serial Port Control"
+sfr = "SCON1.RI_1",              "SFR", C0, 1, base=16, bitRange=0
+sfr = "SCON1.TI_1",              "SFR", C0, 1, base=16, bitRange=1
+sfr = "SCON1.RB8_1",             "SFR", C0, 1, base=16, bitRange=2
+sfr = "SCON1.TB8_1",             "SFR", C0, 1, base=16, bitRange=3
+sfr = "SCON1.REN_1",             "SFR", C0, 1, base=16, bitRange=4
+sfr = "SCON1.SM2_1",             "SFR", C0, 1, base=16, bitRange=5
+sfr = "SCON1.SM1_1",             "SFR", C0, 1, base=16, bitRange=6
+sfr = "SCON1.SM0_FE_1",          "SFR", C0, 1, base=16, bitRange=7
+sfr = "SBUF1",                   "SFR", C1, 1, base=16, tooltip="Serial Data Buffer 1"
+sfr = "SBUF1.SBUF1_0",           "SFR", C1, 1, base=16, bitRange=0
+sfr = "SBUF1.SBUF1_1",           "SFR", C1, 1, base=16, bitRange=1
+sfr = "SBUF1.SBUF1_2",           "SFR", C1, 1, base=16, bitRange=2
+sfr = "SBUF1.SBUF1_3",           "SFR", C1, 1, base=16, bitRange=3
+sfr = "SBUF1.SBUF1_4",           "SFR", C1, 1, base=16, bitRange=4
+sfr = "SBUF1.SBUF1_5",           "SFR", C1, 1, base=16, bitRange=5
+sfr = "SBUF1.SBUF1_6",           "SFR", C1, 1, base=16, bitRange=6
+sfr = "SBUF1.SBUF1_7",           "SFR", C1, 1, base=16, bitRange=7
+sfr = "SCON2",                   "SFR", FE, 1, base=16, tooltip="Serial Port Control Register"
+sfr = "SCON2.RI_2",              "SFR", FE, 1, base=16, bitRange=0
+sfr = "SCON2.TI_2",              "SFR", FE, 1, base=16, bitRange=1
+sfr = "SCON2.RB8_2",             "SFR", FE, 1, base=16, bitRange=2
+sfr = "SCON2.TB8_2",             "SFR", FE, 1, base=16, bitRange=3
+sfr = "SCON2.REN_2",             "SFR", FE, 1, base=16, bitRange=4
+sfr = "SCON2.SM2_2",             "SFR", FE, 1, base=16, bitRange=5
+sfr = "SCON2.SM1_2",             "SFR", FE, 1, base=16, bitRange=6
+sfr = "SCON2.SM0_2",             "SFR", FE, 1, base=16, bitRange=7
+sfr = "SBUF2",                   "SFR", FF, 1, base=16, tooltip="Serial Buffer 2"
+
+
+[SfrReset]
+;; Syntax: Reset[Counter] = "zone_name" Address Size(in bytes) InitValue
+
+;; I/O Port group
+Reset0 = "SFR" 80 1 0F
+Reset1 = "SFR" 90 1 1
+Reset2 = "SFR" 92 1 FF
+Reset3 = "SFR" A0 1 FF
+Reset4 = "SFR" A1 1 FF
+Reset5 = "SFR" A2 1 80
+Reset6 = "SFR" B0 1 FF
+Reset7 = "SFR" B1 1 FF
+Reset8 = "SFR" B2 1 0
+Reset9 = "SFR" F9 1 FF
+
+;; Extended Core group
+Reset10 = "SFR" 81 1 7
+Reset11 = "SFR" 82 1 0
+Reset12 = "SFR" 83 1 0
+Reset13 = "SFR" 84 1 0
+Reset14 = "SFR" 85 1 0
+Reset15 = "SFR" 93 1 0
+Reset16 = "SFR" 95 1 0
+Reset17 = "SFR" 9B 1 FC
+Reset18 = "SFR" D0 1 0
+Reset19 = "SFR" E0 1 0
+Reset20 = "SFR" EB 1 0
+Reset21 = "SFR" ED 1 0
+Reset22 = "SFR" F0 1 0
+Reset23 = "SFR" F2 1 0
+Reset24 = "SFR" F3 1 0
+Reset25 = "SFR" F4 1 0
+Reset26 = "SFR" F5 1 0
+
+;; System management group
+Reset27 = "SFR" 86 1 8
+Reset28 = "SFR" 87 1 0
+Reset29 = "SFR" 9C 1 0
+Reset30 = "SFR" 9D 1 C0
+Reset31 = "SFR" C4 1 83
+Reset32 = "SFR" C6 1 10
+Reset33 = "SFR" EA 1 0
+Reset34 = "SFR" F6 1 3F
+
+;; Timer group
+Reset35 = "SFR" 88 1 0
+Reset36 = "SFR" 89 1 0
+Reset37 = "SFR" 8A 1 0
+Reset38 = "SFR" 8B 1 0
+Reset39 = "SFR" 8C 1 0
+Reset40 = "SFR" 8D 1 0
+Reset41 = "SFR" 8E 1 1
+Reset42 = "SFR" C8 1 0
+Reset43 = "SFR" C9 1 E4
+Reset44 = "SFR" CA 1 0
+Reset45 = "SFR" CB 1 0
+Reset46 = "SFR" CC 1 0
+Reset47 = "SFR" CD 1 0
+Reset48 = "SFR" CE 1 60
+Reset49 = "SFR" D8 1 0
+Reset50 = "SFR" FB 1 0
+Reset51 = "SFR" FC 1 0
+Reset52 = "SFR" FD 1 0
+
+;; Interrupt group
+Reset53 = "SFR" 91 1 0
+Reset54 = "SFR" A8 1 0
+Reset55 = "SFR" B8 1 0
+Reset56 = "SFR" E8 1 0
+Reset57 = "SFR" F8 1 0
+
+;; Serial group
+Reset58 = "SFR" 98 1 0
+Reset59 = "SFR" 99 1 0
+Reset60 = "SFR" C0 1 0
+Reset61 = "SFR" C1 1 0
+Reset62 = "SFR" FE 1 0
+Reset63 = "SFR" FF 1 0
+
+
+;; SFR register groups
+[SfrGroupInfo]
+group = "Extended Core" ,"DPL" ,"DPH" ,"DPX" ,"ESP"
+group = "I/O Port" ,"P4" ,"P1" ,"P4CNT" ,"P2" ,"P5" ,"P5CNT" ,"P3" ,"P6" ,"P6CNT" ,"P7"
+group = "Interrupt" ,"EXIF" ,"IE" ,"IP" ,"EIE" ,"EIP"
+group = "Serial" ,"SCON0" ,"SCON" ,"SBUF0" ,"SCON1" ,"SBUF1" ,"SCON2" ,"SBUF2"
+group = "System management" ,"DPS" ,"PCON" ,"AP" ,"ACON" ,"PMR" ,"MCON" ,"MXAX" ,"DPS1"
+group = "Timer" ,"TCON" ,"TMOD" ,"TL0" ,"TL1" ,"TH0" ,"TH1" ,"CKCON" ,"T2CON" ,"T2MOD" ,"RCAP2L" ,"RCAP2H" ,"TL2" ,"TH2" ,"COR" ,"WDCON" ,"TL3" ,"TH3" ,"T3CM"
+
+
+;; Interrupt Vectors
+[InterruptList]
+;;-----------------------------------------------------------------------------
+;;                           Vector Enable                                     
+;;            Id                  Prio                Pending           Comment
+;;-----------------------------------------------------------------------------
+Interrupt0  = NMI            0x00 1                                            
+Interrupt1  = extern0        0x03 2 IE.EX0            TCON.IE0          ; External interrupt 0
+Interrupt2  = timer0         0x0B 2 IE.ET0            TCON.TF0          ; Timer 0 Interrupt
+Interrupt3  = extern1        0x13 2 IE.EX1            TCON.IE1          ; External interrupt 1
+Interrupt4  = timer1         0x1B 2 IE.ET1            TCON.TF1          ; Timer 1 Interrupt
+Interrupt5  = sio_ti         0x23 2 IE.ES             SCON.TI           ; Serial Port Interrupt
+Interrupt6  = sio_ri         0x23 2 IE.ES             SCON.RI           ; Serial Port Interrupt
+
+
+;; Cycle counter info
+;;
+;; The cycleN opN0 opN1 opN2 opN3 opN4 opN5 opN6 opN7 opN8 opN9 opNA opNB opNC opND opNE opNF
+;;
+;; where:
+;;   cycleN : The tag for base N
+;;   opNn   : The cycle count for instruction with opcode opNn
+;;
+;;[CycleCounterInfo]
+;;cycle0  = 12 24 24 12 12 12 12 12 12 12 12 12 12 12 12 12 ;; Opcodes 0x00-0x0F
+;;cycle1  = 24 24 24 12 12 12 12 12 12 12 12 12 12 12 12 12 ;; Opcodes 0x10-0x1F
+;;cycle2  = 24 24 24 12 12 12 12 12 12 12 12 12 12 12 12 12 ;; Opcodes 0x20-0x2F
+;;cycle3  = 24 24 24 12 12 12 12 12 12 12 12 12 12 12 12 12 ;; Opcodes 0x30-0x3F
+;;cycle4  = 24 24 12 24 12 12 12 12 12 12 12 12 12 12 12 12 ;; Opcodes 0x40-0x4F
+;;cycle5  = 24 24 12 24 12 12 12 12 12 12 12 12 12 12 12 12 ;; Opcodes 0x50-0x5F
+;;cycle6  = 24 24 12 24 12 12 12 12 12 12 12 12 12 12 12 12 ;; Opcodes 0x60-0x6F
+;;cycle7  = 24 24 24 24 12 24 12 12 12 12 12 12 12 12 12 12 ;; Opcodes 0x70-0x7F
+;;cycle8  = 24 24 24 24 48 24 24 24 24 24 24 24 24 24 24 24 ;; Opcodes 0x80-0x8F
+;;cycle9  = 24 24 24 24 12 12 12 12 12 12 12 12 12 12 12 12 ;; Opcodes 0x90-0x9F
+;;cycle10 = 24 24 12 24 48 12 24 24 24 24 24 24 24 24 24 24 ;; Opcodes 0xA0-0xAF
+;;cycle11 = 24 24 12 12 24 24 24 24 24 24 24 24 24 24 24 24 ;; Opcodes 0xB0-0xBF
+;;cycle12 = 24 24 12 12 12 12 12 12 12 12 12 12 12 12 12 12 ;; Opcodes 0xC0-0xCF
+;;cycle13 = 24 24 12 12 12 24 12 12 24 24 24 24 24 24 24 24 ;; Opcodes 0xD0-0xDF
+;;cycle14 = 24 24 24 24 12 12 12 12 12 12 12 12 12 12 12 12 ;; Opcodes 0xE0-0xEF
+;;cycle15 = 24 24 24 24 12 12 12 12 12 12 12 12 12 12 12 12 ;; Opcodes 0xF0-0xFF

@@ -1,0 +1,10 @@
+[PROCESSOR]
+name=plain
+bank_nr_of=0x10
+bank_reg_addr=0xA0
+bank_reg_mask=0xFF
+bank_start=0x3500
+[DPTR]
+nr_of=1
+size=24
+pdata_bank_reg_addr=0xA0

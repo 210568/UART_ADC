@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<optionMenuItem>
+  <tag>extended2</tag>
+  <display>Generic extended2</display>
+  <data>$CUR_DIR$\extended2.i51</data>
+</optionMenuItem>

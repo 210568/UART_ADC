@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<optionMenuItem>
+  <tag>plain</tag>
+  <display>Generic plain</display>
+  <data>$CUR_DIR$\plain.i51</data>
+</optionMenuItem>
